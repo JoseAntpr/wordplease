@@ -24,3 +24,13 @@ class PostViewSet(ModelViewSet):
 
     def get_serializer_class(self):
         return PostListSerializer if self.action == "list" else PostSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        pk = self.blog.pk
+        blog = Blog.objects.get(pk=pk)
+
+        if (user.is_authenticated() and (blog.user == user)) or user.is_superuser:
+            return Post.objects.select_related().filter(blog__id=pk)
+        else:
+            return Post.objects.select.relatec().filter(blog__id=pk, public=True)
