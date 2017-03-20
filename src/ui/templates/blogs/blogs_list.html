@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{%block content %}
+
+
+    {% for blog in blogs_objects %}
+        <p>{{blog.name}}
+            {{blog.user}}</p>
+
+    {% endfor %}
+
+{% endblock %}
