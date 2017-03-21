@@ -32,6 +32,9 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}} <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                       <li><a href="{% url 'new_post' %}">New Post</a></li>
+                      {% for blog in user.blog.all %}
+                        <li><a href="{% url 'new_post' %}">{{blog}}</a></li>
+                      {% endfor %}
                       <li role="separator" class="divider"></li>
                       <li><a href="{% url 'logout' %}">Logout</a></li>
                   </ul>

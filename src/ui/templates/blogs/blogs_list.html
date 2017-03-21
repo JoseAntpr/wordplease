@@ -10,7 +10,7 @@
          </tr>
     {% for blog in blogs_objects %}
          <tr>
-             <th>{{blog.name}}</th>
+             <th><a href="{% url 'blog_detail' blog.slug %}">{{blog.name}}</a></th>
              <th>{{blog.user.username}}</th>
              <th>{{blog.created_at}}</th>
          </tr>
