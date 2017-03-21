@@ -2,11 +2,20 @@
 
 {%block content %}
 
-
+     <table class="table table-hover">
+         <tr>
+             <th>Blog</th>
+             <th>User</th>
+             <th>Created_at</th>
+         </tr>
     {% for blog in blogs_objects %}
-        <p>{{blog.name}}
-            {{blog.user}}</p>
+         <tr>
+             <th>{{blog.name}}</th>
+             <th>{{blog.user.username}}</th>
+             <th>{{blog.created_at}}</th>
+         </tr>
 
     {% endfor %}
+     </table>
 
 {% endblock %}

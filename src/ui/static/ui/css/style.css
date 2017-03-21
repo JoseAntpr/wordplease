@@ -7,6 +7,14 @@
 html{
     height: 100%;
 }
+body{
+    heigh:100%;
+}
+
+
+.container{
+    height: 100%;
+}
 
 .navbar{
     background-color: #1b8dbb;
@@ -29,8 +37,6 @@ html{
     color:white;
 }
 
-
-.footer{
-    background-color: red;
-    color: blue;
+.post-title{
+    text-align: center;
 }
