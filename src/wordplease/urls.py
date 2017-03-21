@@ -27,6 +27,7 @@ router = DefaultRouter()
 router.register("users", UserViewSet, base_name="users_api")
 router.register("blogs", BlogViewSet, base_name="blogs_api")
 router.register("posts", PostViewSet, base_name="posts_api")
+router.register(r'blogs/(?P<blog_id>[0-9]+)/posts', PostViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
