@@ -2,7 +2,32 @@
 
 {%block content %}
 
+<section class="row">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 post-title">
+            <h2> {{post.title}}</h2>
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+            <img class="img-responsive" src="{{post.media}}">
+        </div>
 
-    {{post.title}}
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            {% for category in post.categories.all %}
+                {{category}}
+            {% endfor %}
+
+            <span>{{post.created_at}}</span>
+            <span>Write by: {{post.blog.user.username}}</span>
+        </div>
+
+    </div>
+
+    <div class="col-md-6 col-md-offset-3">
+        {{post.body}}
+    </div>
+
+</section>
 
 {% endblock %}
