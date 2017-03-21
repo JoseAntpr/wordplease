@@ -1,0 +1,36 @@
+*{
+    box-sizing: border-box;
+    padding:0;
+    margin: 0;
+}
+
+html{
+    height: 100%;
+}
+
+.navbar{
+    background-color: #1b8dbb;
+    position:fixed;
+    width:100%;
+    padding:5px;
+
+}
+
+.navbar .navbar-list{
+    float:right;
+    list-style-type: none;
+
+}
+.navbar .navbar-list .nabvar-item{
+    display: inline-block;
+    text-decoration: none;
+    margin-top:5px;
+    padding:10px;
+    color:white;
+}
+
+
+.footer{
+    background-color: red;
+    color: blue;
+}

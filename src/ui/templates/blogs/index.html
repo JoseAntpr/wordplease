@@ -1,13 +1,23 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {%block content %}
 
+    <section class="row">
+        {% for post in posts_objects %}
+        <article class="col-md-12">
+            <h2> {{post.title}}</h2>
+            <img src="{{post.media}}">
+            <div class="summary">
+                {{post.summary}}
+            </div>
+        </article>
+        {% endfor %}
+    </section>
 
-    {% for post in posts_objects %}
+
         <p>{{post.title}}
             {{post.created_at}}
         </p>
 
-    {% endfor %}
 
 {% endblock %}
