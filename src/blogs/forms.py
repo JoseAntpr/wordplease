@@ -11,3 +11,8 @@ class PostForm(forms.ModelForm):
         self.user = user
         super(PostForm, self).__init__(*args,**kwargs)
         self.fields['blog'].queryset = Blog.objects.filter(user=self.user)
+
+class BlogForm(forms.ModelForm):
+    class Meta:
+        model = Blog
+        fields = ["name", ]

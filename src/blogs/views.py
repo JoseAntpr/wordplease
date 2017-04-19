@@ -89,21 +89,23 @@ def post_detail(request, slug, post_pk):
 
 class NewPostView(View):
     @method_decorator(login_required)
-    def get(self,request):
+    def get(self, request):
         form = PostForm(request.user)
 
         context = {
             "form": form
         }
-        return render(request,'blogs/new_post.html', context)
+        return render(request, 'blogs/new_post.html', context)
 
     @method_decorator(login_required)
     def post(self,request):
 
-        form = PostForm(request.user,request.POST)
+        form = PostForm(request.user, request.POST)
 
         if form.is_valid():
+
             post = form.save()
+
 
             message = "Post creado con éxito!"
 
