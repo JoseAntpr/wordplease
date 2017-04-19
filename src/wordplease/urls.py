@@ -17,7 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 
-from blogs.views import lastest_posts, blogs_list, blog_detail, post_detail, NewPostView
+from blogs.views import lastest_posts, blogs_list, blog_detail, post_detail, NewPostView, NewBlogView
 from users.views import LoginView, SignUpView, logout
 
 from users.api import UserViewSet
@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^blogs/?$', blogs_list, name="blog_list"),
     url(r'^blogs/(?P<slug>[\w.@+-]+)/?$', blog_detail, name="blog_detail"),
     url(r'^blogs/(?P<slug>[\w.@+-]+)/(?P<post_pk>[0-9]+)/?$', post_detail, name="post_detail"),
+    url(r'^new_blog/?$', NewBlogView.as_view(), name="new_blog"),
     url(r'^new_post', NewPostView.as_view(), name="new_post"),
     url(r'^login',LoginView.as_view(), name="login"),
     url(r'^logout', logout, name="logout"),

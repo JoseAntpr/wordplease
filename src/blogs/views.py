@@ -7,7 +7,7 @@ from blogs.models import Post, Blog
 from django.utils.decorators import method_decorator
 from django.views import View
 
-from blogs.forms import PostForm
+from blogs.forms import PostForm, BlogForm
 
 
 def lastest_posts(request):
@@ -25,6 +25,44 @@ def lastest_posts(request):
 
     return render(request, "blogs/index.html", context)
 
+class NewBlogView(View):
+    @method_decorator(login_required)
+    def get(self, request):
+        form = BlogForm
+
+        context = {
+            "form" : form,
+        }
+
+        return render(request, 'blogs/new_blog.html', context)
+
+    @method_decorator(login_required)
+    def post(self,request):
+        form = BlogForm(request.POST)
+
+        if form.is_valid():
+
+            blog = Blog()
+            cleaned_data = form.cleaned_data
+            blog.name = cleaned_data.get('name')
+            blog.user = request.user
+            blog.slug = cleaned_data.get('name').replace(" ","_")
+
+            blog.save()
+
+            message = "Post creado con éxito!"
+
+            form = BlogForm()
+        else:
+            message = "Se ha producido un error"
+
+        context = {
+            "form": form,
+            "message": message
+        }
+
+        return render(request, 'blogs/new_post.html', context)
+
 def blogs_list(request):
     """
     Recupera los blogs que hay en la plataforma
@@ -39,6 +77,7 @@ def blogs_list(request):
     }
 
     return render(request, "blogs/blogs_list.html", context)
+
 
 def blog_detail(request, slug):
     """
@@ -64,6 +103,7 @@ def blog_detail(request, slug):
     }
 
     return render(request, "blogs/blog_detail.html", context)
+
 
 def post_detail(request, slug, post_pk):
     """
@@ -118,6 +158,6 @@ class NewPostView(View):
             "message": message
         }
 
-        return render(request, 'blogs/new_post.html', context)
+        return render(request, 'blogs/new_blog.html', context)
 
 
